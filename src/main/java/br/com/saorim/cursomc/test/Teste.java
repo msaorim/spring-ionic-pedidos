@@ -8,10 +8,15 @@ import org.springframework.context.annotation.Configuration;
 
 import br.com.saorim.cursomc.entities.Categoria;
 import br.com.saorim.cursomc.entities.Cidade;
+import br.com.saorim.cursomc.entities.Cliente;
+import br.com.saorim.cursomc.entities.Endereco;
 import br.com.saorim.cursomc.entities.Estado;
 import br.com.saorim.cursomc.entities.Produto;
+import br.com.saorim.cursomc.entities.enums.TipoCliente;
 import br.com.saorim.cursomc.repositories.CategoriaRepository;
 import br.com.saorim.cursomc.repositories.CidadeRepository;
+import br.com.saorim.cursomc.repositories.ClienteRepository;
+import br.com.saorim.cursomc.repositories.EnderecoRepository;
 import br.com.saorim.cursomc.repositories.EstadoRepository;
 import br.com.saorim.cursomc.repositories.ProdutoRepository;
 
@@ -26,10 +31,16 @@ public class Teste implements CommandLineRunner {
 	private EstadoRepository estadoRepository;
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
 				
+		// =============================================================
+		
 		var cat1 = new Categoria(null, "Informática");
 		var cat2 = new Categoria(null, "Escritório");
 		
@@ -44,6 +55,11 @@ public class Teste implements CommandLineRunner {
 		cat1.setProdutos(Arrays.asList(p1, p2, p3));
 		cat2.setProdutos(Arrays.asList(p2));
 		
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		
+		// =============================================================
+		
 		var est1 = new Estado(null, "Minas Gerais");
 		var est2 = new Estado(null, "São Paulo");
 		
@@ -53,11 +69,26 @@ public class Teste implements CommandLineRunner {
 		
 		est1.getCidades().add(c1);
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
-		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		// =============================================================
+
+		var cli1 = new Cliente(null, "Maria Silva", "maria@email.com", "098.787.666-33", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().add("(11) 98876-2314");
+		cli1.getTelefones().add("(15) 94545-9898");
+		
+		var e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "38220-834", c1, cli1);
+		var e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38150-000", c2, cli1);
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		clienteRepository.save(cli1);
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+
+		// =============================================================
+		
+		
 	}
 
 }
