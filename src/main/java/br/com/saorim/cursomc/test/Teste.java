@@ -12,6 +12,7 @@ import br.com.saorim.cursomc.entities.Cidade;
 import br.com.saorim.cursomc.entities.Cliente;
 import br.com.saorim.cursomc.entities.Endereco;
 import br.com.saorim.cursomc.entities.Estado;
+import br.com.saorim.cursomc.entities.ItemPedido;
 import br.com.saorim.cursomc.entities.PagamentoComBoleto;
 import br.com.saorim.cursomc.entities.PagamentoComCartao;
 import br.com.saorim.cursomc.entities.Pedido;
@@ -23,6 +24,7 @@ import br.com.saorim.cursomc.repositories.CidadeRepository;
 import br.com.saorim.cursomc.repositories.ClienteRepository;
 import br.com.saorim.cursomc.repositories.EnderecoRepository;
 import br.com.saorim.cursomc.repositories.EstadoRepository;
+import br.com.saorim.cursomc.repositories.ItemPedidoRepository;
 import br.com.saorim.cursomc.repositories.PagamentoRepository;
 import br.com.saorim.cursomc.repositories.PedidoRepository;
 import br.com.saorim.cursomc.repositories.ProdutoRepository;
@@ -46,6 +48,8 @@ public class Teste implements CommandLineRunner {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -114,6 +118,19 @@ public class Teste implements CommandLineRunner {
 		clienteRepository.save(cli1);
 
 		// =============================================================
+		
+		var ip1 = new ItemPedido(ped1, p1, 0.0, 1, 2000.0);
+		var ip2 = new ItemPedido(ped1, p3, 0.0, 2, 80.0);
+		var ip3 = new ItemPedido(ped2, p2, 100.0, 1, 800.0);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().add(ip1);
+		p2.getItens().add(ip3);
+		p3.getItens().add(ip2);
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
 
 }
