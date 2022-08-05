@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.saorim.cursomc.entities.enums.TipoCliente;
 
 @Entity
@@ -43,6 +45,7 @@ public class Cliente implements Serializable {
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@OneToMany(mappedBy="cliente")
+	@JsonBackReference
 	private List<Pedido> pedidos = new ArrayList<>();
 	
 	public Cliente() {
