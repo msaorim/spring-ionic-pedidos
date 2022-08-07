@@ -15,16 +15,21 @@ import br.com.saorim.cursomc.services.exceptions.ObjectNotFoundException;
 public class CategoriaService {
 
 	@Autowired
-	private CategoriaRepository categoriaRepository;
+	private CategoriaRepository repository;
 	
 	public List<Categoria> findAll(){
-		return categoriaRepository.findAll();
+		return repository.findAll();
 	}
 	
 	public Categoria findById(Integer id){
-		Optional<Categoria> obj = categoriaRepository.findById(id);
+		Optional<Categoria> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 		 "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
+	}
+	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repository.save(obj);
 	}
 	
 }
