@@ -2,6 +2,7 @@ package br.com.saorim.cursomc.controllers;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.saorim.cursomc.dto.CategoriaDTO;
 import br.com.saorim.cursomc.entities.Categoria;
 import br.com.saorim.cursomc.services.CategoriaService;
 
@@ -26,8 +28,11 @@ public class CategoriaController {
 	private CategoriaService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Categoria>> findAll() {
-		return ResponseEntity.ok().body(service.findAll());
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> lista = service.findAll();
+		List<CategoriaDTO> listaDto = lista.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(listaDto);
 	}
 	
 	@GetMapping(value = "/{id}")
