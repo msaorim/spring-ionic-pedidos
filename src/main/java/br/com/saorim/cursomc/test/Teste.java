@@ -58,6 +58,19 @@ public class Teste implements CommandLineRunner {
 		
 		var cat1 = new Categoria(null, "Informática");
 		var cat2 = new Categoria(null, "Escritório");
+		var cat3 = new Categoria(null, "Celular");
+		var cat4 = new Categoria(null, "Bazar");
+		var cat5 = new Categoria(null, "Eletro");
+		var cat6 = new Categoria(null, "Dormitório");
+		var cat7 = new Categoria(null, "Sala");
+		var cat8 = new Categoria(null, "Cozinha");
+		var cat9 = new Categoria(null, "Eletrônicos");
+		var cat10 = new Categoria(null, "Brinquedos");
+		var cat11 = new Categoria(null, "Jogos");
+		var cat12 = new Categoria(null, "Esporte");
+		var cat13 = new Categoria(null, "Comida");
+		var cat14 = new Categoria(null, "Bebida");
+		var cat15 = new Categoria(null, "Lazer");
 		
 		var p1 = new Produto(null, "Computador", 2000.0);
 		var p2 = new Produto(null, "Impressora", 800.0);
@@ -70,7 +83,9 @@ public class Teste implements CommandLineRunner {
 		cat1.setProdutos(Arrays.asList(p1, p2, p3));
 		cat2.setProdutos(Arrays.asList(p2));
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
+		categoriaRepository.saveAll(Arrays.asList(cat6, cat7, cat8, cat9, cat10));
+		categoriaRepository.saveAll(Arrays.asList(cat11, cat12, cat13, cat14, cat15));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		// =============================================================
