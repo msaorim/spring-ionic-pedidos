@@ -62,7 +62,7 @@ public class ClienteService {
 		try {
 			repository.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Esta Cliente possui Pedidos!!!");
+			throw new DataIntegrityException("Este Cliente possui Pedidos!!!");
 		}
 	}
 
