@@ -2,21 +2,45 @@ package br.com.saorim.cursomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import br.com.saorim.cursomc.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message="Não pode ser vazio!")
+	@Length(min = 5, max = 80, message="Tamanho entre 5 e 80 caracteres!")
 	private String nome;
+	
+	@NotEmpty(message="Não pode ser vazio!")
+	@Email(message="Email inválido!")
 	private String email;
+	
+	@NotEmpty(message="Não pode ser vazio!")
 	private String cpfOuCnpj;
+	
 	private Integer  tipo;
 	
+	@NotEmpty(message="Não pode ser vazio!")
 	private String logradouro;
+	
+	@NotEmpty(message="Não pode ser vazio!")
 	private String numero;
+	
 	private String complemento;
 	private String bairro;
+	
+	@NotEmpty(message="Não pode ser vazio!")
 	private String cep;
 	
+	@NotEmpty(message="Não pode ser vazio!")
 	private String telefone1;
+	
 	private String telefone2;
 	private String telefone3;
 	
