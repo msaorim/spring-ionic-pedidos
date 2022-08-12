@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.saorim.cursomc.dto.ClienteDTO;
+import br.com.saorim.cursomc.dto.ClienteNewDTO;
 import br.com.saorim.cursomc.entities.Cliente;
 import br.com.saorim.cursomc.services.ClienteService;
 
@@ -45,7 +46,7 @@ public class ClienteController {
 	// ================================================================
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDTO){
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO){
 		Cliente obj = service.fromDto(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
