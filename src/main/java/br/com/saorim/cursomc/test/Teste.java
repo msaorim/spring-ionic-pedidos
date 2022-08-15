@@ -58,13 +58,13 @@ public class Teste implements CommandLineRunner {
 		
 		var cat1 = new Categoria(null, "Informática");
 		var cat2 = new Categoria(null, "Escritório");
-		var cat3 = new Categoria(null, "Celular");
-		var cat4 = new Categoria(null, "Bazar");
-		var cat5 = new Categoria(null, "Eletro");
-		var cat6 = new Categoria(null, "Dormitório");
-		var cat7 = new Categoria(null, "Sala");
+		var cat3 = new Categoria(null, "Cama, Mesa e Banho");
+		var cat4 = new Categoria(null, "Eletrônicos");
+		var cat5 = new Categoria(null, "Jardinagem");
+		var cat6 = new Categoria(null, "Decoração");
+		var cat7 = new Categoria(null, "Perfumaria");
 		var cat8 = new Categoria(null, "Cozinha");
-		var cat9 = new Categoria(null, "Eletrônicos");
+		var cat9 = new Categoria(null, "Celular");
 		var cat10 = new Categoria(null, "Brinquedos");
 		var cat11 = new Categoria(null, "Jogos");
 		var cat12 = new Categoria(null, "Esporte");
@@ -75,18 +75,40 @@ public class Teste implements CommandLineRunner {
 		var p1 = new Produto(null, "Computador", 2000.0);
 		var p2 = new Produto(null, "Impressora", 800.0);
 		var p3 = new Produto(null, "Mouse", 80.0);
+		var p4 = new Produto(null, "Mesa de Escritório", 300.0);
+		var p5 = new Produto(null, "Toalha", 50.0);
+		var p6 = new Produto(null, "Colcha", 200.0);
+		var p7 = new Produto(null, "TV Ture Color", 1200.0);
+		var p8 = new Produto(null, "Roçadeira", 800.0);
+		var p9 = new Produto(null, "Abajour", 100.0);
+		var p10 = new Produto(null, "Pendente", 180.0);
+		var p11 = new Produto(null, "Shampoo", 90.0);
 		
-		p1.setCategorias(Arrays.asList(cat1));
-		p2.setCategorias(Arrays.asList(cat1, cat2));
-		p3.setCategorias(Arrays.asList(cat1));
+		p1.setCategorias(Arrays.asList(cat1, cat4));
+		p2.setCategorias(Arrays.asList(cat1, cat2, cat4));
+		p3.setCategorias(Arrays.asList(cat1, cat4));
+		p4.setCategorias(Arrays.asList(cat2));
+		p5.setCategorias(Arrays.asList(cat3));
+		p6.setCategorias(Arrays.asList(cat3));
+		p7.setCategorias(Arrays.asList(cat4));
+		p8.setCategorias(Arrays.asList(cat5));
+		p9.setCategorias(Arrays.asList(cat6));
+		p10.setCategorias(Arrays.asList(cat6));
+		p11.setCategorias(Arrays.asList(cat7));
 		
 		cat1.setProdutos(Arrays.asList(p1, p2, p3));
-		cat2.setProdutos(Arrays.asList(p2));
+		cat2.setProdutos(Arrays.asList(p2, p4));
+		cat3.setProdutos(Arrays.asList(p5, p6));
+		cat4.setProdutos(Arrays.asList(p1, p2, p3, p7));
+		cat5.setProdutos(Arrays.asList(p8));
+		cat6.setProdutos(Arrays.asList(p9, p10));
+		cat7.setProdutos(Arrays.asList(p11));
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
 		categoriaRepository.saveAll(Arrays.asList(cat6, cat7, cat8, cat9, cat10));
 		categoriaRepository.saveAll(Arrays.asList(cat11, cat12, cat13, cat14, cat15));
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6));
+		produtoRepository.saveAll(Arrays.asList(p7, p8, p9, p10, p11));
 		
 		// =============================================================
 		
