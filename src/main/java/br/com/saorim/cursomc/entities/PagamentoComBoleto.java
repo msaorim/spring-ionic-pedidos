@@ -6,10 +6,12 @@ import java.util.Objects;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import br.com.saorim.cursomc.entities.enums.EstadoPagamento;
 
 @Entity
+@JsonTypeName("PagamentoComBoleto")
 public class PagamentoComBoleto extends Pagamento {
 	private static final long serialVersionUID = 1L;
 	
