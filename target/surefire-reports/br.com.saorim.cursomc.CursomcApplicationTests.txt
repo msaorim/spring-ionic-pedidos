@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.com.saorim.cursomc.CursomcApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.933 s - in br.com.saorim.cursomc.CursomcApplicationTests
